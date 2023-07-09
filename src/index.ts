@@ -3,8 +3,8 @@ import { Try } from 'funfix';
 // const { readFileSync, read } = require("fs");
 // const { join, extname } = require("path");
 
-import { readFileSync } from "fs";
-import { join } from "path";
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 interface FileData {
   filename: string;
@@ -51,38 +51,34 @@ export const handleDownload = (data: { file: FileData }) => {
   link.click();
 };
 
-
 // server functions
 
 function deconstructFile(filename: any) {
   return Try.of(() => {
-    if (!filename) throw new Error("Filename is null");
+    if (!filename) throw new Error('Filename is null');
 
     const file = join(__dirname, filename);
     const fileContent: any = readFileSync(file);
-    
-    const base64Content = Buffer.from(fileContent).toString("base64");
+
+    const base64Content = Buffer.from(fileContent).toString('base64');
     // @ts-ignore
     const fileMime = mime.lookup(file);
 
     // const fileObj = {filename: filename,mimetype: fileMime,encoding: 'base64',content: base64Content};
-    const fileObj = {filename, mimetype: fileMime, encoding: 'base64', content: base64Content};
-
+    const fileObj = { filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
 
     return fileObj;
-  }
-  ).fold(
+  }).fold(
     (_) => {
       return {
-        filename: "",
-        mimetype: "",
-        encoding: "",
-        content: "",
+        filename: '',
+        mimetype: '',
+        encoding: '',
+        content: '',
       };
-    }
-    ,
+    },
     (fileObj) => {
       return fileObj;
-    }
+    },
   );
 }
