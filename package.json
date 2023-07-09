@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/BenSimmers/graphQL-file-sender#readme",
   "devDependencies": {
+    "@types/mime-types": "^2.1.1",
     "@types/react": "^18.2.14",
     "prettier": "^3.0.0",
     "react": "^18.2.0",
@@ -33,6 +34,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
-    "graphql": "^15.8.0"
+    "funfix": "^7.0.1",
+    "graphql": "^15.8.0",
+    "immutable": "^4.3.0"
   }
 }
