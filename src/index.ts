@@ -62,15 +62,10 @@ function deconstructFile(filename: any) {
     const fileContent: any = readFileSync(file);
     
     const base64Content = Buffer.from(fileContent).toString("base64");
-    //@ts-ignore
+    // @ts-ignore
     const fileMime = mime.lookup(file);
 
-    const fileObj = {
-      filename: filename,
-      mimetype: fileMime,
-      encoding: "base64",
-      content: base64Content,
-    };
+    const fileObj = {filename: filename,mimetype: fileMime,encoding: "base64",content: base64Content};
 
     return fileObj;
   }
