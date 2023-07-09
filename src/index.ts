@@ -65,7 +65,9 @@ function deconstructFile(filename: any) {
     // @ts-ignore
     const fileMime = mime.lookup(file);
 
-    const fileObj = {filename: filename,mimetype: fileMime,encoding: 'base64',content: base64Content};
+    // const fileObj = {filename: filename,mimetype: fileMime,encoding: 'base64',content: base64Content};
+    const fileObj = {filename, mimetype: fileMime, encoding: 'base64', content: base64Content};
+
 
     return fileObj;
   }
