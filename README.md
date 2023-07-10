@@ -116,5 +116,9 @@ app.listen(4000);
 console.log("Running a GraphQL API server at http://localhost:4000/graphql");
 ```
 
+## Apollo Client Integration
+This project also provides a seamless integration with Apollo Client and React, so set up apollo client as you normally would with your React application. All you have to do is add the plugin to your app and you are good to go. 
+
+
 ## Contributions are welcome! 
 If you find any bugs or have suggestions for improvement, please open an issue or submit a pull request.
