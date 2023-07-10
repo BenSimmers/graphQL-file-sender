@@ -5,7 +5,8 @@
     "target": "es5",
     "esModuleInterop": true,
     "module": "commonjs",
-    "strict": true
+    "strict": true,
+    "types": ["./src/types.d.ts"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]
