@@ -2,7 +2,8 @@
   "name": "graphql-file-sender",
   "version": "1.0.4",
   "description": "custom Node Express, Apollo Client plugin to send pdfs over graphql",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.ts",
