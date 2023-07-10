@@ -1,6 +1,6 @@
 {
   "name": "graphql-file-sender",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "custom Node Express, Apollo Client plugin to send pdfs over graphql",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
