@@ -4,13 +4,6 @@ import { Try } from 'funfix';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-interface FileData {
-  filename: string;
-  mimetype: string;
-  encoding: string;
-  content: string;
-}
-
 const GET_FILE = gql`
   query GetFile {
     file {
@@ -21,23 +14,14 @@ const GET_FILE = gql`
     }
   }
 `;
-/**
- *  Client
- * @param base64
- * @returns
- */
+
 export const base64ToArrayBuffer = (base64: string) => {
   const binaryString = window.atob(base64);
   const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
   return bytes.buffer;
 };
 
-/**
- * client
- * @param data
- * @returns
- */
-export const handleDownload = (data: { file: FileData }) => {
+export const handleDownload = (data: { file: { filename: string, content: string, mimetype: string } }) => {
   const { filename, content, mimetype } = data?.file ?? {};
   if (!filename || !content || !mimetype) return;
 
@@ -62,7 +46,6 @@ function deconstructFile(filename: any) {
     // @ts-ignore
     const fileMime = mime.lookup(file);
 
-    // const fileObj = {filename: filename,mimetype: fileMime,encoding: 'base64',content: base64Content};
     const fileObj = { filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
 
     return fileObj;

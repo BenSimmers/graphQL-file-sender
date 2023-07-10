@@ -10,22 +10,12 @@ var funfix_1 = require("funfix");
 var fs_1 = require("fs");
 var path_1 = require("path");
 var GET_FILE = (0, client_1.gql)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  query GetFile {\n    file {\n      filename\n      mimetype\n      encoding\n      content\n    }\n  }\n"], ["\n  query GetFile {\n    file {\n      filename\n      mimetype\n      encoding\n      content\n    }\n  }\n"])));
-/**
- *  Client
- * @param base64
- * @returns
- */
 var base64ToArrayBuffer = function (base64) {
     var binaryString = window.atob(base64);
     var bytes = Uint8Array.from(binaryString, function (char) { return char.charCodeAt(0); });
     return bytes.buffer;
 };
 exports.base64ToArrayBuffer = base64ToArrayBuffer;
-/**
- * client
- * @param data
- * @returns
- */
 var handleDownload = function (data) {
     var _a;
     var _b = (_a = data === null || data === void 0 ? void 0 : data.file) !== null && _a !== void 0 ? _a : {}, filename = _b.filename, content = _b.content, mimetype = _b.mimetype;
@@ -49,7 +39,6 @@ function deconstructFile(filename) {
         var base64Content = Buffer.from(fileContent).toString('base64');
         // @ts-ignore
         var fileMime = mime.lookup(file);
-        // const fileObj = {filename: filename,mimetype: fileMime,encoding: 'base64',content: base64Content};
         var fileObj = { filename: filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
         return fileObj;
     }).fold(function (_) {
