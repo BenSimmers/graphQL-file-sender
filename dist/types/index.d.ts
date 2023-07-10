@@ -1,4 +1,4 @@
-interface FileData {
+export interface FileData {
     filename: string;
     mimetype: string;
     encoding: string;
