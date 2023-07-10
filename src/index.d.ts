@@ -1,4 +1,6 @@
-// src/index.d.ts
+export declare function base64ToArrayBuffer(base64: string): ArrayBuffer;
+
+export declare function handleDownload(data: { file: FileData }): void;
 
 export interface FileData {
   filename: string;
@@ -6,6 +8,3 @@ export interface FileData {
   encoding: string;
   content: string;
 }
-
-export function base64ToArrayBuffer(base64: string): ArrayBuffer;
-export function handleDownload(data: { file: FileData }): void;

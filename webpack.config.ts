@@ -6,23 +6,25 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-  },
+    clean: true,
+    assetModuleFilename: 'assets/[name][ext]',
+  },  
   module: {
     rules: [
-    {
-      test: /\.tsx?$/,
-      use: 'ts-loader',
-      exclude: /node_modules/,
-    },
-  ],
-},
-resolve: {
-  extensions: ['.ts', '.tsx', '.js'],
-  fallback: {
-    fs: false, // Set fs to false to exclude it from the bundle
-    path: require.resolve('path-browserify'), // Use path-browserify as a fallback for path module
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
-},
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+    fallback: {
+      fs: false, // Set fs to false to exclude it from the bundle
+      path: require.resolve('path-browserify'), // Use path-browserify as a fallback for the path module
+    },
+  },
 };
 
 export default config;
