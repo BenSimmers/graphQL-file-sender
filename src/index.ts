@@ -21,7 +21,7 @@ export const base64ToArrayBuffer = (base64: string) => {
   return bytes.buffer;
 };
 
-export const handleDownload = (data: { file: { filename: string, content: string, mimetype: string } }) => {
+export const handleDownload = (data: { file: { filename: string; content: string; mimetype: string } }) => {
   const { filename, content, mimetype } = data?.file ?? {};
   if (!filename || !content || !mimetype) return;
 
