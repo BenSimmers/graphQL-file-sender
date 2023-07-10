@@ -1,14 +1,15 @@
-import * as path from 'path';
+import path from 'path';
 import { Configuration } from 'webpack';
 
 const config: Configuration = {
+  mode: 'development', // Set to 'development' or 'production'
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     clean: true,
     assetModuleFilename: 'assets/[name][ext]',
-  },  
+  },
   module: {
     rules: [
       {
@@ -21,8 +22,8 @@ const config: Configuration = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     fallback: {
-      fs: false, // Set fs to false to exclude it from the bundle
-      path: require.resolve('path-browserify'), // Use path-browserify as a fallback for the path module
+      fs: false,
+      path: require.resolve('path-browserify'), // Add this line
     },
   },
 };

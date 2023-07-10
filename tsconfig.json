@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "strict": true,
-    "types": ["./src/types.d.ts"]
+    "types": ["node", "path-browserify"],
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]

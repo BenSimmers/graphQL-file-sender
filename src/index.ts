@@ -1,7 +1,5 @@
 import { gql } from '@apollo/client';
 import { Try } from 'funfix';
-// const { readFileSync, read } = require("fs");
-// const { join, extname } = require("path");
 
 import { readFileSync } from 'fs';
 import { join } from 'path';
