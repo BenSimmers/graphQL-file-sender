@@ -1,30 +1,25 @@
-import { Try, Option } from 'funfix';
+import { Option } from 'funfix';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import * as mimeTypes from 'mime-types';
 
-export function base64ToArrayBuffer(base64: string) {
-  const binaryString = window.atob(base64);
-  const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
-  return bytes.buffer;
-}
+export const base64ToArrayBuffer = (base64: string) => Uint8Array.from(window.atob(base64), (char) => char.charCodeAt(0)).buffer;
+
 
 export function handleDownload(data: any) {
-  const { filename, content, mimetype } = data?.file ?? {};
-  if (!filename || !content || !mimetype) return;
+  const { filename, content, mimetype } = data?.file || {};
+  if (!filename || !content || !mimetype) return null;
 
   const blob = new Blob([base64ToArrayBuffer(content)], { type: mimetype });
   const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filename;
-  link.click();
+
+  const link = Object.assign(document.createElement("a"), {
+    href: url,
+    download: filename,
+  });
 }
 
-/**
- * @param filename - filename to deconstruct
- * @returns - file object or empty object
- */
+
 export function deconstructFile(filename: any, baseDirectory: string) {
   return Option.of(filename)
     .map((f) => {
@@ -44,7 +39,6 @@ export function deconstructFile(filename: any, baseDirectory: string) {
     });
 }
 
-// export const FileTypeSchema = `
 export function FileTypeSchema() {
   return `
     type File {
