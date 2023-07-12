@@ -33,27 +33,28 @@ export const handleDownload = (data: { file: { filename: string; content: string
   link.click();
 };
 
-
 /**
- * 
+ *
  * @param filename - filename to deconstruct
  * @returns - file object or empty object
  */
 export const deconstructFile = (filename: any) => {
-  return Option.of(filename).map((f: string) => {
-    const file = join(__dirname, f);
-    const fileContent = readFileSync(file);
-    const base64Content = Buffer.from(fileContent).toString("base64");
-    // @ts-ignore
-    const fileMime = mime.lookup(file);
+  return Option.of(filename)
+    .map((f: string) => {
+      const file = join(__dirname, f);
+      const fileContent = readFileSync(file);
+      const base64Content = Buffer.from(fileContent).toString('base64');
+      // @ts-ignore
+      const fileMime = mime.lookup(file);
 
-    const fileObj = {filename: filename,mimetype: fileMime,encoding: "base64",content: base64Content,};
+      const fileObj = { filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
 
-    return fileObj;
-  }).getOrElse({
-    filename: "",
-    mimetype: "",
-    encoding: "",
-    content: "",
-  });
+      return fileObj;
+    })
+    .getOrElse({
+      filename: '',
+      mimetype: '',
+      encoding: '',
+      content: '',
+    });
 };

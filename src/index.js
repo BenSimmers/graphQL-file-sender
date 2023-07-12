@@ -35,24 +35,21 @@ exports.handleDownload = handleDownload;
  * @returns - file object or empty object
  */
 var deconstructFile = function (filename) {
-    return funfix_1.Option.of(filename).map(function (f) {
+    return funfix_1.Option.of(filename)
+        .map(function (f) {
         var file = (0, path_1.join)(__dirname, f);
         var fileContent = (0, fs_1.readFileSync)(file);
-        var base64Content = Buffer.from(fileContent).toString("base64");
+        var base64Content = Buffer.from(fileContent).toString('base64');
         // @ts-ignore
         var fileMime = mime.lookup(file);
-        var fileObj = {
-            filename: filename,
-            mimetype: fileMime,
-            encoding: "base64",
-            content: base64Content,
-        };
+        var fileObj = { filename: filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
         return fileObj;
-    }).getOrElse({
-        filename: "",
-        mimetype: "",
-        encoding: "",
-        content: "",
+    })
+        .getOrElse({
+        filename: '',
+        mimetype: '',
+        encoding: '',
+        content: '',
     });
 };
 exports.deconstructFile = deconstructFile;
