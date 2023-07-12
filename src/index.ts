@@ -58,3 +58,12 @@ export const deconstructFile = (filename: any) => {
       content: '',
     });
 };
+
+export const FileTypeSchema = `
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+    content: String!
+  }
+`;
