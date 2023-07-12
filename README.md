@@ -26,12 +26,10 @@ git clone https://github.com/BenSimmers/graphQL-file-sender.git
 
 ### Client
 
-On the client end you have 2 methods 2. handleDownload - handles the client download of the file. (Note: this function uses an exportable `base64ToArray` function to convert the base64 string to a Uint8Array)
+1. handleDownload - handles the client download of the file. (Note: this function uses an exportable `base64ToArray` function to convert the base64 string to a Uint8Array custom made for this project)
 
 ```typescript
 import { handleDownload } from 'graphql-file-sender';
-// or
-const { handleDownload } = require('graphql-file-sender');
 ```
 
 - Something you will need to do is add this query to your client. this will query the server for the file.
@@ -76,6 +74,8 @@ On the server end you have 1 method for Express but there is some setup you need
 
 ```typescript
 import { deconstructFile } from 'graphql-file-sender';
+// or
+const { deconstructFile } = require('graphql-file-sender');
 ```
 
 2. Setup the Express server and GraphQL endpoint as you normally would. (Note: you will need to add the `cors` package to your server)
