@@ -4,12 +4,12 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     return cooked;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleDownload = exports.base64ToArrayBuffer = void 0;
+exports.deconstructFile = exports.handleDownload = exports.base64ToArrayBuffer = exports.GET_FILE = void 0;
 var client_1 = require("@apollo/client");
 var funfix_1 = require("funfix");
 var fs_1 = require("fs");
 var path_1 = require("path");
-var GET_FILE = (0, client_1.gql)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  query GetFile {\n    file {\n      filename\n      mimetype\n      encoding\n      content\n    }\n  }\n"], ["\n  query GetFile {\n    file {\n      filename\n      mimetype\n      encoding\n      content\n    }\n  }\n"])));
+exports.GET_FILE = (0, client_1.gql)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  query GetFile {\n    file {\n      filename\n      mimetype\n      encoding\n      content\n    }\n  }\n"], ["\n  query GetFile {\n    file {\n      filename\n      mimetype\n      encoding\n      content\n    }\n  }\n"])));
 var base64ToArrayBuffer = function (base64) {
     var binaryString = window.atob(base64);
     var bytes = Uint8Array.from(binaryString, function (char) { return char.charCodeAt(0); });
@@ -29,27 +29,31 @@ var handleDownload = function (data) {
     link.click();
 };
 exports.handleDownload = handleDownload;
-// server functions
-function deconstructFile(filename) {
-    return funfix_1.Try.of(function () {
-        if (!filename)
-            throw new Error('Filename is null');
-        var file = (0, path_1.join)(__dirname, filename);
+/**
+ *
+ * @param filename - filename to deconstruct
+ * @returns - file object or empty object
+ */
+var deconstructFile = function (filename) {
+    return funfix_1.Option.of(filename).map(function (f) {
+        var file = (0, path_1.join)(__dirname, f);
         var fileContent = (0, fs_1.readFileSync)(file);
-        var base64Content = Buffer.from(fileContent).toString('base64');
+        var base64Content = Buffer.from(fileContent).toString("base64");
         // @ts-ignore
         var fileMime = mime.lookup(file);
-        var fileObj = { filename: filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
-        return fileObj;
-    }).fold(function (_) {
-        return {
-            filename: '',
-            mimetype: '',
-            encoding: '',
-            content: '',
+        var fileObj = {
+            filename: filename,
+            mimetype: fileMime,
+            encoding: "base64",
+            content: base64Content,
         };
-    }, function (fileObj) {
         return fileObj;
+    }).getOrElse({
+        filename: "",
+        mimetype: "",
+        encoding: "",
+        content: "",
     });
-}
+};
+exports.deconstructFile = deconstructFile;
 var templateObject_1;

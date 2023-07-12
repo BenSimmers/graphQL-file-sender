@@ -1,3 +1,4 @@
+export declare const GET_FILE: import("@apollo/client").DocumentNode;
 export declare const base64ToArrayBuffer: (base64: string) => ArrayBufferLike;
 export declare const handleDownload: (data: {
     file: {
@@ -6,3 +7,19 @@ export declare const handleDownload: (data: {
         mimetype: string;
     };
 }) => void;
+/**
+ *
+ * @param filename - filename to deconstruct
+ * @returns - file object or empty object
+ */
+export declare const deconstructFile: (filename: any) => {
+    filename: any;
+    mimetype: any;
+    encoding: string;
+    content: string;
+} | {
+    filename: string;
+    mimetype: string;
+    encoding: string;
+    content: string;
+};
