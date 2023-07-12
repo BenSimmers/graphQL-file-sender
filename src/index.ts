@@ -24,7 +24,7 @@ export function handleDownload(data: any) {
  * @param filename - filename to deconstruct
  * @returns - file object or empty object
  */
-export function deconstructFile(filename: any, baseDirectory: string){
+export function deconstructFile(filename: any, baseDirectory: string) {
   return Option.of(filename)
     .map((f) => {
       const file = join(baseDirectory, f);
@@ -44,7 +44,6 @@ export function deconstructFile(filename: any, baseDirectory: string){
       content: '',
     });
 }
-
 
 // export const FileTypeSchema = `
 export function FileTypeSchema() {
