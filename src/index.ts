@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
-import { Try } from 'funfix';
+import { Try, Option } from 'funfix';
 
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-const GET_FILE = gql`
+export const GET_FILE = gql`
   query GetFile {
     file {
       filename
@@ -33,33 +33,32 @@ export const handleDownload = (data: { file: { filename: string; content: string
   link.click();
 };
 
-// server functions
 
-function deconstructFile(filename: any) {
-  return Try.of(() => {
-    if (!filename) throw new Error('Filename is null');
-
+/**
+ * 
+ * @param filename - filename to deconstruct
+ * @returns - file object or empty object
+ */
+export const deconstructFile = (filename: any) => {
+  return Option.of(filename).map((filename: string) => {
     const file = join(__dirname, filename);
-    const fileContent: any = readFileSync(file);
-
-    const base64Content = Buffer.from(fileContent).toString('base64');
+    const fileContent = readFileSync(file);
+    const base64Content = Buffer.from(fileContent).toString("base64");
     // @ts-ignore
     const fileMime = mime.lookup(file);
 
-    const fileObj = { filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
+    const fileObj = {
+      filename: filename,
+      mimetype: fileMime,
+      encoding: "base64",
+      content: base64Content,
+    };
 
     return fileObj;
-  }).fold(
-    (_) => {
-      return {
-        filename: '',
-        mimetype: '',
-        encoding: '',
-        content: '',
-      };
-    },
-    (fileObj) => {
-      return fileObj;
-    },
-  );
-}
+  }).getOrElse({
+    filename: "",
+    mimetype: "",
+    encoding: "",
+    content: "",
+  });
+};

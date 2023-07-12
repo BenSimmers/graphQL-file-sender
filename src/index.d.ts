@@ -6,3 +6,15 @@ export declare const handleDownload: (data: {
     mimetype: string;
   };
 }) => void;
+
+export declare const deconstructFile: (filename: any) => {
+  filename: string;
+  mimetype: string;
+  encoding: string;
+  content: string;
+} | {
+  filename: string;
+  mimetype: string;
+  encoding: string;
+  content: string;
+};
