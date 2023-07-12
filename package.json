@@ -6,7 +6,7 @@
   "types": "dist/types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --p tsconfig.json && webpack --config webpack.config.ts",
+    "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "preversion": "npm run lint",
@@ -17,7 +17,15 @@
     "type": "git",
     "url": "git+https://github.com/BenSimmers/graphQL-file-sender.git"
   },
-  "keywords": [],
+  "keywords": [
+    "graphql",
+    "apollo",
+    "express",
+    "typescript",
+    "pdf",
+    "file",
+    "download"
+  ],
   "author": "Ben Simmers",
   "license": "ISC",
   "bugs": {
