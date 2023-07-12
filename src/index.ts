@@ -15,13 +15,13 @@ export const GET_FILE = gql`
   }
 `;
 
-export const base64ToArrayBuffer = (base64: string) => {
+export function base64ToArrayBuffer(base64: string) {
   const binaryString = window.atob(base64);
   const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
   return bytes.buffer;
-};
+}
 
-export const handleDownload = (data: { file: { filename: string; content: string; mimetype: string } }) => {
+export function handleDownload(data: any) {
   const { filename, content, mimetype } = data?.file ?? {};
   if (!filename || !content || !mimetype) return;
 
@@ -31,14 +31,15 @@ export const handleDownload = (data: { file: { filename: string; content: string
   link.href = url;
   link.download = filename;
   link.click();
-};
+}
 
 /**
  *
  * @param filename - filename to deconstruct
  * @returns - file object or empty object
  */
-export const deconstructFile = (filename: any) => {
+// export const deconstructFile = (filename: any) => {
+export function deconstructFile(filename: any) {
   return Option.of(filename)
     .map((f: string) => {
       const file = join(__dirname, f);
@@ -57,13 +58,22 @@ export const deconstructFile = (filename: any) => {
       encoding: '',
       content: '',
     });
-};
+}
 
-export const FileTypeSchema = `
-  type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
-    content: String!
-  }
-`;
+// export const FileTypeSchema = `
+export function FileTypeSchema() {
+  return `
+    type File {
+      filename: String!
+      mimetype: String!
+      encoding: String!
+      content: String!
+    }
+  `;
+}
+
+export default {
+  handleDownload,
+  deconstructFile,
+  FileTypeSchema,
+};
