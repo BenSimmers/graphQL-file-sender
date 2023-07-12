@@ -53,7 +53,8 @@
     "fs": "^0.0.1-security",
     "funfix": "^7.0.1",
     "graphql": "^15.8.0",
-    "immutable": "^4.3.0"
+    "immutable": "^4.3.0",
+    "mime-types": "^2.1.35"
   },
   "files": [
     "lib/**/*"

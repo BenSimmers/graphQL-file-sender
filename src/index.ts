@@ -1,6 +1,7 @@
 import { Try, Option } from 'funfix';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import * as mimeTypes from 'mime-types';
 
 export function base64ToArrayBuffer(base64: string) {
   const binaryString = window.atob(base64);
@@ -30,9 +31,7 @@ export function deconstructFile(filename: any, baseDirectory: string) {
       const file = join(baseDirectory, f);
       const fileContent = readFileSync(file);
       const base64Content = Buffer.from(fileContent).toString('base64');
-      // @ts-ignore
-      const fileMime = mime.lookup(file);
-
+      const fileMime = mimeTypes.lookup(file) ?? '';
       const fileObj = { filename, mimetype: fileMime, encoding: 'base64', content: base64Content };
 
       return fileObj;
