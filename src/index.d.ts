@@ -1,4 +1,4 @@
-import { DocumentNode } from "graphql";
+import { DocumentNode } from 'graphql';
 
 /**
  * @description - This function converts a file to base64
