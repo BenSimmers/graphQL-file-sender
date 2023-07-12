@@ -40,8 +40,8 @@ export const handleDownload = (data: { file: { filename: string; content: string
  * @returns - file object or empty object
  */
 export const deconstructFile = (filename: any) => {
-  return Option.of(filename).map((filename: string) => {
-    const file = join(__dirname, filename);
+  return Option.of(filename).map((f: string) => {
+    const file = join(__dirname, f);
     const fileContent = readFileSync(file);
     const base64Content = Buffer.from(fileContent).toString("base64");
     // @ts-ignore
