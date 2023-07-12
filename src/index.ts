@@ -3,8 +3,8 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import * as mimeTypes from 'mime-types';
 
-export const base64ToArrayBuffer = (base64: string) => Uint8Array.from(window.atob(base64), (char) => char.charCodeAt(0)).buffer;
-
+export const base64ToArrayBuffer = (base64: string) =>
+  Uint8Array.from(window.atob(base64), (char) => char.charCodeAt(0)).buffer;
 
 export function handleDownload(data: any) {
   const { filename, content, mimetype } = data?.file || {};
@@ -13,12 +13,11 @@ export function handleDownload(data: any) {
   const blob = new Blob([base64ToArrayBuffer(content)], { type: mimetype });
   const url = URL.createObjectURL(blob);
 
-  const link = Object.assign(document.createElement("a"), {
+  const link = Object.assign(document.createElement('a'), {
     href: url,
     download: filename,
   });
 }
-
 
 export function deconstructFile(filename: any, baseDirectory: string) {
   return Option.of(filename)
