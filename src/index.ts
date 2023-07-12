@@ -18,7 +18,7 @@ export function handleDownload(data: any) {
     href: url,
     download: filename,
   });
-  
+
   link.click();
 }
 const PdfGenerationParamsTests = {
