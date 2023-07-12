@@ -2,12 +2,15 @@
   "name": "graphql-file-sender",
   "version": "1.0.19",
   "description": "custom Node Express, Apollo Client plugin to send pdfs over graphql",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint && npm run build",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
@@ -54,5 +57,8 @@
     "funfix": "^7.0.1",
     "graphql": "^15.8.0",
     "immutable": "^4.3.0"
-  }
+  },
+  "files": [
+    "lib/**/*"
+  ]
 }
