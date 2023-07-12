@@ -1,19 +1,6 @@
-import { gql } from '@apollo/client';
 import { Try, Option } from 'funfix';
-
 import { readFileSync } from 'fs';
 import { join } from 'path';
-
-export const GET_FILE = gql`
-  query GetFile {
-    file {
-      filename
-      mimetype
-      encoding
-      content
-    }
-  }
-`;
 
 export function base64ToArrayBuffer(base64: string) {
   const binaryString = window.atob(base64);
