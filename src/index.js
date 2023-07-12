@@ -4,7 +4,7 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     return cooked;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deconstructFile = exports.handleDownload = exports.base64ToArrayBuffer = exports.GET_FILE = void 0;
+exports.FileTypeSchema = exports.deconstructFile = exports.handleDownload = exports.base64ToArrayBuffer = exports.GET_FILE = void 0;
 var client_1 = require("@apollo/client");
 var funfix_1 = require("funfix");
 var fs_1 = require("fs");
@@ -53,4 +53,5 @@ var deconstructFile = function (filename) {
     });
 };
 exports.deconstructFile = deconstructFile;
+exports.FileTypeSchema = "\n  type File {\n    filename: String!\n    mimetype: String!\n    encoding: String!\n    content: String!\n  }\n";
 var templateObject_1;

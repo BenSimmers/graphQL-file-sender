@@ -23,3 +23,4 @@ export declare const deconstructFile: (filename: any) => {
     encoding: string;
     content: string;
 };
+export declare const FileTypeSchema = "\n  type File {\n    filename: String!\n    mimetype: String!\n    encoding: String!\n    content: String!\n  }\n";
