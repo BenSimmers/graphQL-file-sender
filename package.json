@@ -54,7 +54,8 @@
     "funfix": "^7.0.1",
     "graphql": "^15.8.0",
     "immutable": "^4.3.0",
-    "mime-types": "^2.1.35"
+    "mime-types": "^2.1.35",
+    "pdf-lib": "^1.17.1"
   },
   "files": [
     "lib/**/*"
