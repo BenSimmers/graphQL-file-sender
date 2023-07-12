@@ -21,15 +21,13 @@ export function handleDownload(data: any) {
 }
 
 /**
- *
  * @param filename - filename to deconstruct
  * @returns - file object or empty object
  */
-// export const deconstructFile = (filename: any) => {
-export function deconstructFile(filename: any) {
+export function deconstructFile(filename: any, baseDirectory: string){
   return Option.of(filename)
-    .map((f: string) => {
-      const file = join(__dirname, f);
+    .map((f) => {
+      const file = join(baseDirectory, f);
       const fileContent = readFileSync(file);
       const base64Content = Buffer.from(fileContent).toString('base64');
       // @ts-ignore
@@ -46,6 +44,7 @@ export function deconstructFile(filename: any) {
       content: '',
     });
 }
+
 
 // export const FileTypeSchema = `
 export function FileTypeSchema() {
